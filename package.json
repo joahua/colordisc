@@ -1,0 +1,43 @@
+{
+  "name": "colordisc",
+  "version": "0.0.0",
+  "description": "Canvas-based color picker for modern browsers",
+  "homepage": "",
+  "author": {
+    "name": "Josh Street",
+    "email": "josh@josh.st",
+    "url": "http://josh.st"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "keywords": [
+    "color",
+    "wheel",
+    "colour",
+    "colorpicker",
+    "colourpicker",
+    "hsl",
+    "hsla",
+    "canvas"
+  ],
+  "repository": "joahua/colordisc",
+  "devDependencies": {
+    "babel-core": "^5.5.0",
+    "mkdirp": "~0.5.1",
+    "babelify": "~6.4.0",
+    "http-server": "~0.8.5",
+    "rimraf": "~2.4.3",
+    "uglifyify": "~3.0.1",
+    "watchify": "~3.4.0"
+  },
+  "scripts": {
+    "start": "npm install && npm run setup && npm run dist",
+    "setup": "rimraf dist && mkdirp dist",
+    "dist": "npm run js",
+    "js": "watchify -t babelify -g uglifyify -e lib/index.js -o dist/index.js",
+    "serve": "http-server -p 5555 dist/"
+  },
+  "license": "MIT"
+}
