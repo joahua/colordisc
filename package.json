@@ -30,14 +30,19 @@
     "http-server": "~0.8.5",
     "rimraf": "~2.4.3",
     "uglifyify": "~3.0.1",
-    "watchify": "~3.4.0"
+    "watchify": "~3.4.0",
+    "tape": "~4.2.2",
+    "tap-closer": "~1.0.0",
+    "smokestack": "~3.4.1"
   },
   "scripts": {
     "start": "npm install && npm run setup && npm run dist",
     "setup": "rimraf dist && mkdirp dist",
-    "dist": "npm run js",
-    "js": "watchify -t babelify -g uglifyify -e lib/index.js -o dist/index.js",
-    "serve": "http-server -p 5555 dist/"
+    "dist": "browserify -t babelify -g uglifyify -e lib/index.js -o dist/index.js",
+    "watch": "watchify -t babelify -e lib/index.js -o dist/index.js",
+    "serve": "http-server -p 5555 dist/",
+    "test": "npm run dist && node test/",
+    "test:browser": "browserify -t babelify test/ | tap-closer | smokestack"
   },
   "license": "MIT"
 }

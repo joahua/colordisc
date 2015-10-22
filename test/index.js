@@ -1,8 +1,8 @@
-import assert from 'assert';
-import colordisc from '../lib';
+var test = require('tape');
+var colordisc = require('../dist/');
 
-describe('colordisc', function () {
-  xit('should be defined', function () {
-    assert.isFunction(colordisc, 'It\'s not even defined!');
-  });
+test('colordisc', function (t) {
+  t.plan(2);
+  t.equal(typeof colordisc, 'function');
+  t.throws(colordisc(null));
 });
